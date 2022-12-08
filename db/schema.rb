@@ -15,8 +15,9 @@ ActiveRecord::Schema.define(version: 2022_11_27_201130) do
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.string "token"
-    t.string "user_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 2022_11_27_201130) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "message"
     t.integer "user_id"
+    t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
