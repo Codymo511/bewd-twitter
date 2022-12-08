@@ -1,4 +1,4 @@
 class Tweet < ApplicationRecord
-    belongs_to :user
-    validates :tweet,length: {maximum: 140 }
+  belongs_to :user
+  validates :message, length: { maximum: 140 }
 end
