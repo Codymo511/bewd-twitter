@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
       render json: {
         success: false
       }
-
     end
   end
 
