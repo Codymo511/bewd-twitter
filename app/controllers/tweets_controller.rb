@@ -22,7 +22,9 @@ class TweetsController < ApplicationController
 
       render 'tweets/success_true' if @tweet.save
     else
-      render 'common/success_false'
+      render json: {
+        success: false
+      }
     end
   end
 
@@ -33,11 +35,15 @@ class TweetsController < ApplicationController
     if session
       user = User.find_by(id: session.user_id)
       tweet = user.tweets.find_by(params[:id])
-      if session.user_id == tweet.user_id
-        render 'common/success_true' if tweet.destroy
+      if session.user_id == tweet.user_id && tweet.destroy && tweet.destroy
+        render json: {
+          success: true
+        }
       end
     else
-      render 'common/success_false'
+      render json: {
+        success: false
+      }
     end
   end
 
@@ -47,4 +53,3 @@ class TweetsController < ApplicationController
     params.require(:tweet).permit(:message)
   end
 end
-
